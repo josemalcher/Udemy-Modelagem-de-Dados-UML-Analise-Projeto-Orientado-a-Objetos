@@ -361,6 +361,51 @@ Exercício 3: Deseja-se fazer um sistema de rede social. Nesta rede social, os u
 
 ## <a name="parte3">3 - Seção 3 - Associações e multiplicidades de papéis</a>
 
+### 12 Material de apoio do capítulo
+
+- [03-A01+Associações.pdf](/Secao-03-Associacoes-e-multiplicidades-de-papeis/00-apoio/03-A01+Associações.pdf)
+- [03-A02+Multiplicidade+de+papéis.pdf](/Secao-03-Associacoes-e-multiplicidades-de-papeis/00-apoio/03-A02+Multiplicidade+de+papéis.pdf)
+- [03-A03+Conceito+dependente,+associações+obrigatórias,+múltiplas+e+autoassociações.pdf](/Secao-03-Associacoes-e-multiplicidades-de-papeis/00-apoio/03-A03+Conceito+dependente,+associações+obrigatórias,+múltiplas+e+autoassociações.pdf)
+- [03-A04+Desenhando+instâncias+com+diagrama+de+objetos+da+UML.pdf](/Secao-03-Associacoes-e-multiplicidades-de-papeis/00-apoio/03-A04+Desenhando+instâncias+com+diagrama+de+objetos+da+UML.pdf)
+
+### 13 Associações
+
+
+
+### 14 Multiplicidades de papéis
+
+
+
+### 15 Conceito dependente, associações obrigatórias, múltiplas e autoassociações
+
+
+
+### 16 Desenhando instâncias com o diagrama de objetos da UML
+
+
+
+### 17 Exercícios de fixação
+
+
+
+### 18 Exercício resolvido 1
+
+
+
+### 19 Exercício resolvido 2
+
+
+
+### 20 Correção do exercício 3
+
+
+
+### 21 Correção do exercício 4
+
+
+
+### 22 Correção do exercício 5
+
 
 
 [Voltar ao Índice](#indice)
