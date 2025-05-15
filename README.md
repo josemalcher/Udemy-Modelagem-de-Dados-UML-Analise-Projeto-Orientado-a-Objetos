@@ -226,13 +226,115 @@ classDiagram
 - **Fowler, Martin** - *UML Essencial* (3ª ed.)
 - **Evans, Eric** - *Domain-Driven Design* (2004)
 
-Se precisar de mais exemplos ou esclarecimentos, é só perguntar!
 
+### 6 Como identificar conceitos
 
+- [02-A02+Como+identificar+conceitos.pdf](/Secao-02-Identificacao-de-conceitos-e-atributos/01-apoio/02-A02+Como+identificar+conceitos.pdf)
+
+---
+
+#### Resumo AI - DEEPSEEK
+
+## 📌 Fontes para Identificação de Conceitos
+
+### 📚 Documentos-chave:
+- **Visão geral do sistema** (documento descritivo)
+- **Casos de uso** (interações sistema-ator)
+- Processos de negócio, regulamentos e leis
+- Entrevistas com especialistas do domínio
+
+### Exemplo Prático (Sistema Acadêmico):
+```text
+"Registram-se cursos (nome, carga horária, valor), turmas (número, data início, vagas) e 
+matrículas (data, prestações). Alunos possuem nome, CPF e data nascimento. Avaliações 
+registram notas, com aprovação ≥70% da nota prevista."
+```
+
+### ✔ Boas Práticas:
+- Extrair substantivos: `Curso`, `Turma`, `Matrícula`, `Aluno`, `Avaliação`
+- Atributos coerentes: `Curso.cargaHoraria`, `Aluno.cpf`
+
+### ✖ Más Práticas:
+- Ignorar relações: Não conectar `Aluno` ↔ `Matrícula`
+- Atributos compostos: `endereco: {rua, cidade, CEP}` (viola 1FN)
+
+---
+
+## 🔍 Técnicas de Identificação
+
+### 🎯 Estratégias:
+1. **Substantivos** (pessoa, lugar, coisa)
+  - Ex: `Livro`, `Comprador`, `Pagamento`
+2. **Expressões substantivadas**
+  - Ex: "autorização de pagamento" → `AutorizacaoPagamento`
+3. **Verbos que geram conceitos**
+  - Ex: "realizar venda" → `Venda`
+
+### Exemplo de Caso de Uso (Compra de Livros):
+```text
+1. Comprador informa identificação
+2. Sistema mostra livros (título, capa, preço)
+3. Comprador seleciona livros
+4.1 Finaliza compra (cartão, endereço, frete)
+4.2 Guarda carrinho (prazo de validade)
+```
+
+### ✔ Modelo Correto:
+```mermaid
+classDiagram
+    class Comprador {
+        <<oid>> cpf : String
+        nome : String
+        endereco : String
+    }
+    class Livro {
+        titulo : String
+        preco : Double
+    }
+    class Venda {
+        frete : Double
+        totalGeral : Double
+    }
+    Comprador "1" -- "*" Venda
+    Venda "*" -- "*" Livro
+```
+
+### ✖ Erro Comum:
+- Incluir atributos de relacionamento como campos:
+  ```text
+  class Funcionario {
+      telefoneDepartamento : String  // Anti-padrão!
+  }
+  ```
+  **Solução correta**: Relacionar com classe `Departamento`
+
+---
+
+## 💡 Lições-Chave
+
+1. **Documentos insuficientes** exigem complementação com entrevistas
+2. **Evitar**:
+  - Atributos multivalorados (`telefones: List`)
+  - Misturar conceitos (ex: `DadosPagamento` vs `Cartao`+`Venda`)
+3. **Validar** com especialistas do domínio
+
+## 📚 Referências
+- Alves, Nelio. *Modelagem Conceitual com UML* (Udemy, 2017)
+- Wazlawick, R.S. *Análise e Projeto de Sistemas* (2011)
+- Fowler, M. *UML Essencial* (3ª ed.)
+
+> **Nota**: Exemplos adaptados do material do Prof. Dr. Nelio Alves (https://www.udemy.com/user/nelio-alves)
 
 
 ### 07 Exercícios de fixação
 
+[02-E01+exercicios-fixacao-identificacao-de-conceitos-e-atributos.pdf](Secao-02-Identificacao-de-conceitos-e-atributos/01-apoio/02-E01+exercicios-fixacao-identificacao-de-conceitos-e-atributos.pdf)
+
+Exercício 1 (RESOLVIDO): Deseja-se construir um sistema para manter um registro de artistas musicais e seus álbuns. Cada álbum possui várias músicas, as quais poderão ser consultadas pelo sistema. O sistema também deve permitir a busca de artistas por nome ou nacionalidade. O sistema também deve ser capaz de exibir um relatório dos álbuns de um artista, o qual pode ser ordenado por nome, ano, ou duração total do álbum. Um álbum pode ter a participação de vários artistas, sem distinção. Já a música pode possuir um ou mais autores e intérpretes (todos considerados artistas).
+
+Exercício 2: Deseja-se construir um sistema para gerenciar as informações de campeonatos de handebol, que ocorrem todo ano. Deseja-se saber nome, data de nascimento, gênero e altura dos jogadores de cada time, bem qual deles é o capitão de cada time. Cada partida do campeonato ocorre em um estádio, que possui nome e endereço. Cada time possui seu estádio-sede e, assim, cada partida possui um time mandante (anfitrião) e o time visitante. O sistema deve ser capaz de listar as partidas já ocorridas e não ocorridas de um campeonato. O sistema deve também ser capaz de listar a tabela do campeonato, ordenando os times por classificação, que é calculada em primeiro lugar por saldo de vitórias e em segundo lugar por saldo de gols.
+
+Exercício 3: Deseja-se fazer um sistema de rede social. Nesta rede social, os usuários podem seguir e ser seguidos por outros usuários. O perfil do usuário deve permitir cadastrar nome, email, data de nascimento, website, gênero, telefone e foto do perfil. Os usuários podem fazer postagens de texto em sua própria "linha do tempo" (timeline) da rede social, sendo que podem anexar também fotos às postagens. Uma foto é referenciada pela URI de seu local de armazenamento. As fotos podem ser organizadas em álbuns, sendo que cada álbum possui um título.
 
 
 ### 08 Instalação do Astah
@@ -241,15 +343,15 @@ Se precisar de mais exemplos ou esclarecimentos, é só perguntar!
 
 ### 09 Exercício resolvido 1
 
-
+![](/Secao-02-Identificacao-de-conceitos-e-atributos/02-Exercicio01/%2009-Exercicio1.jpg)
 
 ### 10 Correção do exercício 2
 
-
+![](/Secao-02-Identificacao-de-conceitos-e-atributos/02-Exercicio02/Class%20Diagram0.png)
 
 ### 11 Correção do exercício 3
 
-
+![](/Secao-02-Identificacao-de-conceitos-e-atributos/02-Exercicio03/Class%20Diagram3.png)
 
 
 [Voltar ao Índice](#indice)
