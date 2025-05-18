@@ -479,10 +479,17 @@ Pra quê visualizar as instâncias (ou objetos)?
 
 ### 17 Exercícios de fixação
 
-
+- [03-E01+exercicios-fixacao-associacoes-e-multiplicidades.pdf](/Secao-03-Associacoes-e-multiplicidades-de-papeis/00-apoio/03-E01+exercicios-fixacao-associacoes-e-multiplicidades.pdf)
 
 ### 18 Exercício resolvido 1
 
+Exercício 1 (RESOLVIDO): Deseja-se construir um sistema para manter um registro de artistas musicais e seus álbuns. Cada álbum possui várias músicas, as quais poderão ser consultadas pelo sistema. O sistema também deve permitir a busca de artistas por nome ou nacionalidade. O sistema também deve ser capaz de exibir um relatório dos álbuns de um artista, o qual pode ser ordenado por nome, ano, ou duração total do álbum. Um álbum pode ter a participação de vários artistas, sem distinção. Já a música pode possuir um ou mais autores e intérpretes (todos considerados artistas).
+
+Instância mínima: 2 artistas, 3 álbuns, 4 músicas
+
+![classes.png](Secao-03-Associacoes-e-multiplicidades-de-papeis/01-exercicio2/classes.png)
+
+![objs.png](Secao-03-Associacoes-e-multiplicidades-de-papeis/01-exercicio2/objs.png)
 
 
 ### 19 Exercício resolvido 2
