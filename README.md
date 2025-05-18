@@ -370,9 +370,52 @@ Exercício 3: Deseja-se fazer um sistema de rede social. Nesta rede social, os u
 
 ### 13 Associações
 
+Associação é um relacionamento estático entre dois conceitos.
+
+![img.png](img/13_1_associacao.png)
+
+![img.png](img/13_2_associacao2.png)
+
 
 
 ### 14 Multiplicidades de papéis
+
+É a quantidade mínima e máxima de objetos que uma associação permite em cada um de seus papéis.
+
+Exemplo: um carro pode ter quantos donos?
+Mínimo: 1
+Máximo: 1
+
+
+![img.png](img/14_1_multiplicidades.png)
+
+
+Multiplicidades possíveis
+
+"," significa "ou"
+".." significa "a"
+"*" significa "vários" (sem limite específico)
+
+
+a) 1 exatamente um
+b) 2 exatamente dois
+c) 0..1 zero a um
+d) 0..* zero ou mais
+e) * zero ou mais
+f) 1..* um ou mais
+g) 2..* dois ou mais
+h) 2..5 de dois a cinco
+i) 2,5 dois ou cinco
+j) 2,5..8 dois ou cinco a oito
+
+
+Associações comuns
+
+![img.png](img/14_2_umPum.png)
+
+![img.png](img/14_3_umPum2.png)
+
+![img.png](img/14_3_muitosPum.png)
 
 
 
