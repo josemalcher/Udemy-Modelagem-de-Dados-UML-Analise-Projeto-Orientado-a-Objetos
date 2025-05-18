@@ -421,9 +421,59 @@ Associações comuns
 
 ### 15 Conceito dependente, associações obrigatórias, múltiplas e autoassociações
 
+Associação obrigatória
 
+Uma associação é obrigatória se o conceito associado desempenha um papel de multiplicidade mínima maior que zero
+
+![img.png](img/15_1_associacaoObrigatoria.png)
+
+- A associação de uma pessoa com carros não é obrigatória. 
+- A associação de um carro com dono é obrigatória.
+
+![img.png](img/15_2_atencaoAssociacaoObr.png)
+
+
+
+Conceito dependente
+
+Um conceito é dependente se ele possuir pelo menos uma associação obrigatória.
+
+![img.png](img/15_3_ConceitoDependente.png)
+
+Nota
+
+A UML tem um símbolo que denota dependência de um modo geral, mas que não acrescenta valor prático à modelagem conceitual:
+
+![img.png](img/15_4_notaConcDepen.png)
+
+
+Associações múltiplas
+
+![img.png](img/15_5_multiplas.png)
+
+Os nomes de papel devem ser únicos.
+
+![img.png](img/15_6_NomesUnicos.png)
+
+Autoassociações
+
+Quando um conceito é associado com ele próprio.
+
+![img.png](img/15_7_associacaoProprio.png)
 
 ### 16 Desenhando instâncias com o diagrama de objetos da UML
+
+Recordando
+- O Modelo Conceitual representa a estrutura dos dados
+  - Conceitos/atributos e como eles se inter-relacionam entre si
+
+- Cada ocorrência de um conceito é chamada de instância ou objeto
+
+
+Pra quê visualizar as instâncias (ou objetos)?
+- Ajuda a compreender
+- Ajuda a descobrir problemas
+- Ferramenta UML: diagrama de objetos
 
 
 
