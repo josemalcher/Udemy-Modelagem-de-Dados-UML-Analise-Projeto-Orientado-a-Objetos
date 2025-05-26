@@ -508,7 +508,7 @@ Exercício 3: Deseja-se fazer um sistema de rede social. Nesta rede social, os u
 
 Instância mínima: 4 usuários, pelo menos um usuário com mais de uma postagem, pelo menos um álbum com mais de uma foto.
 
-
+- [Secao-03-Associacoes-e-multiplicidades-de-papeis/20-exercicio-3](Secao-03-Associacoes-e-multiplicidades-de-papeis/20-exercicio-3)
 
 ### 21 Correção do exercício 4
 
