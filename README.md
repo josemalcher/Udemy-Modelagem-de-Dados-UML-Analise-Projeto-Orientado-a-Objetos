@@ -498,7 +498,7 @@ Exercício 2 (RESOLVIDO): Deseja-se construir um sistema para gerenciar as infor
 
 Instância mínima: 1 campeonato, 2 partidas, 2 times, 2 jogadores em cada time
 
-
+- [Secao-03-Associacoes-e-multiplicidades-de-papeis/01-exercicio3](Secao-03-Associacoes-e-multiplicidades-de-papeis/01-exercicio3)
 
 
 
