@@ -525,7 +525,7 @@ Exercício 5: Deseja-se fazer um sistema para manter dados de cidades (nome, est
 
 Instância mínima: 1 cidade, 2 hotéis e 2 restaurantes, 2 pacotes turísticos.
 
-
+[22-Correcao-do-0exercicio-5](Secao-03-Associacoes-e-multiplicidades-de-papeis/22-Correcao-do-0exercicio-5)
 
 
 
