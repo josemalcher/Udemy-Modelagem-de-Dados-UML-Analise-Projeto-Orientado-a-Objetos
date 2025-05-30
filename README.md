@@ -516,7 +516,7 @@ Exercício 4: Deseja-se construir um sistema para gerenciar as informações dos
 
 Instância mínima: 2 atividades, 4 participantes, pelo menos uma atividade com mais de um bloco de horários.
 
-
+[21-Correcao-do-exercicio-4](Secao-03-Associacoes-e-multiplicidades-de-papeis/21-Correcao-do-exercicio-4)
 
 
 ### 22 Correção do exercício 5
