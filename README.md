@@ -537,6 +537,334 @@ Instância mínima: 1 cidade, 2 hotéis e 2 restaurantes, 2 pacotes turísticos.
 ## <a name="parte4">4 - Seção 4 - Associações todo-parte e classes de associação</a>
 
 
+### 23 Material de apoio do capítulo
+
+[04-A01+Associações+todo-parte.pdf](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/00-apoio/04-A01%2BAssocia%C3%A7%C3%B5es%2Btodo-parte.pdf)
+
+[04-A02+Classe+de+associação.pdf](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/00-apoio/04-A02%2BClasse%2Bde%2Bassocia%C3%A7%C3%A3o.pdf)
+
+
+### 24 Associação todo-parte
+
+Quando um conceito é parte de outro que representa um todo, desenhamos um diamante no lado do todo.
+
+![img.png](img/24_1-associacao-todo-parte.png)
+
+#### Exclusividade: 1 ou 0..1
+
+Como a composição (diamante preto) é uma relação exclusiva, a multiplicidade no lado do diamante sempre será 1 ou 0..1
+
+![img.png](img/14_2-exclusividade-1_0-1.png)
+
+Agregação - exemplo 2
+
+![img.png](img/24_3-agregacao-ex2.png)
+
+Agregação - exemplo 3
+
+![img.png](img/24_4-agregacao-ex3.png)
+
+#### Ressalva 1
+
+O diamante (seja branco, seja preto) deve ser usado somente em casos em que realmente se trata de uma relação todo-parte
+
+![img.png](img/24_5-ressalva_1.png)
+
+
+#### Ressalva 2
+
+Algumas pessoas confundem o diamante preto (composição) como se fosse uma forma de indicar a deleção em cascata dos objetos dependentes. Na verdade o que indica isso é a multiplicidade.
+
+![img.png](img/24_5-ressalva2.png)
+
+- Associações todo-parte
+  - Agregação - diamante branco - mais fraca
+  - Composição - diamante preto - mais forte - exclusiva (1 ou 0..1)
+- Ressalvas
+  - Use diamante somente quando realmente for uma associação todo-parte 
+  - Não é a composição que indica deleção em cascata
+
+---
+
+RESUMO GEMINI
+
+As associações **todo-parte** em UML são usadas para modelar relacionamentos onde uma classe (o "todo") é composta por, ou contém, instâncias de outra(s) classe(s) (as "partes"). Essas associações são fundamentais para representar a estrutura e a composição dos objetos em um sistema. Existem dois tipos principais: **Agregação** e **Composição**.
+
+---
+
+### Resumo do Tema: Associação Todo-Parte
+
+Uma associação todo-parte descreve como um objeto "todo" é constituído por outros objetos "parte". A distinção principal entre os tipos de associação todo-parte reside na força do relacionamento e na dependência do ciclo de vida entre o todo e suas partes.
+
+#### 1. Agregação (Aggregation) ⚪
+
+A **agregação** representa uma relação "tem-um" ou "contém-um" mais fraca.
+* **Características Principais:**
+  * As partes podem existir independentemente do todo.
+  * Se o "todo" for destruído, as "partes" podem continuar a existir e, potencialmente, ser associadas a outros "todos".
+  * Uma "parte" pode ser compartilhada entre vários "todos" (embora isso deva ser modelado com cuidado para não gerar confusão).
+* **UML:** Representada por um losango **vazado** (◇) no lado da classe "todo".
+* **Quando usar:** Ideal para representar coleções de objetos onde a remoção do contêiner não implica na remoção dos objetos contidos.
+
+**Exemplo UML (Agregação):** Uma `Universidade` possui `Departamentos`. Se a `Universidade` deixar de existir, os `Departamentos` podem, conceitualmente, continuar existindo ou serem incorporados por outra instituição. Um `Departamento` também pode agregar `Professores`.
+
+```mermaid
+classDiagram
+    Universidade "1" o-- "1..*" Departamento : possui
+    Departamento "1" o-- "1..*" Professor : agrega
+    class Universidade {
+        -String nome
+        +List~Departamento~ departamentos
+    }
+    class Departamento {
+        -String nome
+        +List~Professor~ professores
+    }
+    class Professor {
+        -String nome
+        -String especialidade
+    }
+```
+
+**Exemplo em Código Java (Agregação):**
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+// Classe Parte
+class Professor {
+    private String nome;
+    private String especialidade;
+
+    public Professor(String nome, String especialidade) {
+        this.nome = nome;
+        this.especialidade = especialidade;
+        System.out.println("Professor(a) " + nome + " (" + especialidade + ") criado(a).");
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    @Override
+    public String toString() {
+        return "Professor{" + "nome='" + nome + '\'' + ", especialidade='" + especialidade + '\'' + '}';
+    }
+}
+
+// Classe Todo (que agrega Professores)
+class Departamento {
+    private String nome;
+    private List<Professor> professores; // Agregação
+
+    public Departamento(String nome) {
+        this.nome = nome;
+        this.professores = new ArrayList<>();
+        System.out.println("Departamento de " + nome + " criado.");
+    }
+
+    public void adicionarProfessor(Professor professor) {
+        this.professores.add(professor);
+        System.out.println(professor.getNome() + " adicionado ao departamento de " + this.nome);
+    }
+
+    public void listarProfessores() {
+        System.out.println("Professores do departamento de " + nome + ":");
+        for (Professor p : professores) {
+            System.out.println("- " + p.getNome());
+        }
+    }
+    // Se o departamento for extinto, os professores (objetos) podem continuar existindo.
+}
+
+public class ExemploAgregacao {
+    public static void main(String[] args) {
+        Professor prof1 = new Professor("Dr. Silva", "Inteligência Artificial");
+        Professor prof2 = new Professor("Dra. Costa", "Banco de Dados");
+
+        Departamento deptComputacao = new Departamento("Ciência da Computação");
+        deptComputacao.adicionarProfessor(prof1);
+        deptComputacao.adicionarProfessor(prof2);
+
+        deptComputacao.listarProfessores();
+
+        // Mesmo que 'deptComputacao' seja descontinuado ou o objeto seja coletado pelo GC,
+        // 'prof1' e 'prof2' ainda existem e podem ser associados a outros departamentos.
+        // deptComputacao = null;
+        // System.out.println(prof1); // prof1 ainda é uma instância válida.
+    }
+}
+```
+
+---
+
+#### 2. Composição (Composition) ⚫
+
+A **composição** representa uma relação de pertencimento forte, onde as "partes" são exclusivamente possuídas pelo "todo" e seu ciclo de vida é estritamente dependente dele.
+* **Características Principais:**
+  * As "partes" não existem independentemente do "todo".
+  * Se o "todo" é destruído, as "partes" associadas também são destruídas.
+  * Uma "parte" pertence a apenas um "todo" em um determinado momento.
+* **UML:** Representada por um losango **preenchido** (◆) no lado da classe "todo".
+* **Quando usar:** Para relações onde a parte é um componente intrínseco e exclusivo do todo. Garante forte integridade dos dados e do ciclo de vida.
+
+**Exemplo UML (Composição):** Um `Livro` é composto por `Capítulos`. Se o `Livro` é destruído (ex: retirado de catálogo e todas as cópias físicas/digitais eliminadas), seus `Capítulos` deixam de existir como parte daquele livro. Um `Carro` é composto por um `Motor` específico.
+
+```mermaid
+classDiagram
+    Livro "1" *-- "1..*" Capitulo : é composto por
+    Carro "1" *-- "1" Motor : possui
+    class Livro {
+        -String titulo
+        +List~Capitulo~ capitulos
+        +adicionarCapitulo(String tituloCap)
+    }
+    class Capitulo {
+        -String titulo
+        -int numeroPaginas
+    }
+    class Carro {
+        -String modelo
+        +Motor motor
+    }
+    class Motor {
+        -String numeroSerie
+        -int potenciaHP
+    }
+```
+
+**Exemplo em Código Java (Composição):**
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+// Classe Parte (ciclo de vida gerenciado pelo Livro)
+class Capitulo {
+    private String titulo;
+    private int numeroPaginas;
+    // Geralmente, a parte não tem uma referência explícita e navegável de volta ao todo
+    // para reforçar a ideia de que é gerenciada pelo todo.
+
+    // Construtor geralmente chamado pela classe "Todo"
+    public Capitulo(String titulo, int numeroPaginas) {
+        this.titulo = titulo;
+        this.numeroPaginas = numeroPaginas;
+        System.out.println("Capítulo '" + titulo + "' criado.");
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    @Override
+    public String toString() {
+        return "Capitulo{" + "titulo='" + titulo + '\'' + ", paginas=" + numeroPaginas + '}';
+    }
+}
+
+// Classe Todo
+class Livro {
+    private String titulo;
+    private List<Capitulo> capitulos; // Composição
+
+    public Livro(String titulo) {
+        this.titulo = titulo;
+        this.capitulos = new ArrayList<>(); // A lista de capítulos é criada com o livro
+        System.out.println("Livro '" + titulo + "' criado.");
+    }
+
+    // O Livro é responsável pela criação de seus Capítulos
+    public void adicionarCapitulo(String tituloCapitulo, int numPaginas) {
+        Capitulo novoCapitulo = new Capitulo(tituloCapitulo, numPaginas);
+        this.capitulos.add(novoCapitulo);
+    }
+
+    public void exibirSumario() {
+        System.out.println("Sumário do Livro: " + titulo);
+        for (int i = 0; i < capitulos.size(); i++) {
+            System.out.println((i + 1) + ". " + capitulos.get(i).getTitulo());
+        }
+    }
+
+    // Quando um objeto Livro é destruído (coletado pelo Garbage Collector, por exemplo),
+    // os objetos Capitulo contidos em sua lista 'capitulos' também se tornarão
+    // elegíveis para coleta, assumindo que não há outras referências a eles
+    // (o que violaria a premissa da composição forte).
+}
+
+public class ExemploComposicao {
+    public static void main(String[] args) {
+        Livro meuLivro = new Livro("A Arte da Modelagem");
+        meuLivro.adicionarCapitulo("Introdução", 10);
+        meuLivro.adicionarCapitulo("Associações", 25);
+        meuLivro.adicionarCapitulo("Herança", 15);
+
+        meuLivro.exibirSumario();
+
+        // Se 'meuLivro' for tornado null e não houver outras referências,
+        // os capítulos "Introdução", "Associações", "Herança" também
+        // perderão sua referência primária e serão elegíveis para coleta de lixo.
+        // meuLivro = null;
+    }
+}
+```
+
+---
+
+### Boas Práticas 👍 e Más Práticas 👎 para Associações Todo-Parte
+
+#### Boas Práticas 👍:
+
+1.  **Escolha Semântica Clara:** Decida entre agregação e composição com base no significado real da relação no domínio do problema. Pergunte-se: "A parte pode existir sem o todo?".
+2.  **Gerenciamento do Ciclo de Vida (Composição):** Na composição, a classe "todo" deve gerenciar a criação e destruição de suas partes. Se o "todo" é deletado, as partes devem ser deletadas também.
+3.  **Multiplicidades Corretas:** Defina as multiplicidades (cardinalidades) em ambos os lados da associação para refletir as regras de negócio (ex: um `Carro` *tem exatamente um* `Motor`; uma `Equipe` *tem muitos* `Jogadores`).
+4.  **Coesão (Composição):** A composição ajuda a criar objetos mais coesos, onde o "todo" encapsula fortemente suas partes.
+5.  **Clareza no Diagrama:** Use os símbolos UML corretos (losango vazado para agregação, preenchido para composição) para comunicar a intenção do design.
+
+#### Más Práticas 👎:
+
+1.  **Confundir Agregação com Composição:** Usar agregação quando a parte depende vitalmente do todo (ou vice-versa) pode levar a problemas de integridade de dados e objetos "órfãos".
+2.  **Uso Excessivo de Composição:** Nem toda relação "tem-um" é uma composição. Aplicá-la indiscriminadamente pode tornar o modelo rígido e dificultar o reuso de componentes.
+3.  **Agregação Trivial:** Usar agregação para relações que são meras associações simples sem uma clara semântica de "todo-parte". Por exemplo, `Cliente` e `Endereco` pode ser uma composição (se o endereço só existe para aquele cliente) ou uma associação simples (se endereços podem ser compartilhados ou existem independentemente).
+4.  **Violar o Ciclo de Vida da Composição:** Permitir que "partes" de uma composição existam após a destruição do "todo" ou sejam compartilhadas entre múltiplos "todos" que as compõem.
+5.  **Esquecer da Navegabilidade:** Embora não exclusivo de todo-parte, pense se a navegação é unidirecional (do todo para a parte) ou bidirecional, e represente isso adequadamente. Na composição, a navegação da parte para o todo é menos comum ou até desencorajada para reforçar a dependência.
+
+Entender bem a diferença e a aplicação correta de agregação e composição é crucial para criar modelos de dados e de objetos robustos e significativos.
+
+
+---
+
+### 25 Classe de associação
+
+
+
+### 26 Exercícios de fixação
+
+
+
+### 27 Exercício resolvido 1 - Parte 1/3
+
+
+
+### 28 Exercício resolvido 1 - Parte 2/3
+
+
+
+### 29 Exercício resolvido 1 - Parte 3/3
+
+
+
+### 30 Correção do exercício 2
+
+
+
+### 31 Correção do exercício 3
+
+
+
+
 
 [Voltar ao Índice](#indice)
 
