@@ -838,7 +838,616 @@ Entender bem a diferença e a aplicação correta de agregação e composição 
 
 ### 25 Classe de associação
 
+![img.png](img/25_1_associacao.png)
 
+Atenção!
+
+A classe de associação indica associação ÚNICA!
+
+![img.png](img/25_2_associacao_2.png)
+
+
+![img.png](img/25_3_associacao-nao-unica.png)
+
+RESUMO
+
+![img.png](img/25_4-resumo-associacao.png)
+
+
+
+---
+RESUMO GEMINI - Somente com o Tema da aula
+
+Uma **Classe de Associação** é um construto da UML que permite que uma associação entre classes tenha seus próprios atributos e operações. Isso é útil quando certas informações não pertencem a nenhuma das classes individualmente, mas sim à relação entre elas.
+
+---
+
+### Resumo do Tema: Classe de Associação
+
+Quando um relacionamento entre duas ou mais classes precisa armazenar informações ou comportamentos específicos, uma **Classe de Associação** é utilizada. Ela é, ao mesmo tempo, uma classe e uma associação.
+
+* **Características Principais:**
+  * Possui atributos e/ou operações que descrevem ou pertencem à relação.
+  * É instanciada uma vez para cada link (instância da associação) entre os objetos das classes associadas.
+  * É mais comum em associações muitos-para-muitos, mas pode ocorrer em outras multiplicidades se a semântica do domínio exigir.
+* **UML:** Representada como uma classe normal conectada por uma linha tracejada à linha da associação que ela detalha.
+* **Quando usar:** Sempre que você tiver dados ou comportamentos que são inerentes à interação ou ao vínculo entre objetos, e não aos objetos em si.
+
+**Exemplo UML (Classe de Associação):** Um `Estudante` se matricula em uma `Turma`. A `Matricula` é a classe de associação que armazena a `dataMatricula` e a `notaFinal` do estudante naquela turma específica.
+
+```mermaid
+classDiagram
+    Estudante "0..*" -- "0..*" Turma : matricula-se em
+    (Estudante) .. (Matricula)
+    (Turma) .. (Matricula)
+    class Estudante {
+        -String idEstudante
+        -String nome
+    }
+    class Turma {
+        -String codTurma
+        -String disciplina
+    }
+    class Matricula {
+        -Date dataMatricula
+        -String status
+        -double notaFinal
+        +calcularStatusAprovacao()
+    }
+```
+
+**Exemplo em Código Java (Classe de Associação):**
+
+```java
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+class Estudante {
+    private String idEstudante;
+    private String nome;
+    // Opcional: Estudante pode manter uma lista de suas matrículas para facilitar a navegação
+    private List<Matricula> matriculas;
+
+    public Estudante(String idEstudante, String nome) {
+        this.idEstudante = idEstudante;
+        this.nome = nome;
+        this.matriculas = new ArrayList<>();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getIdEstudante() {
+        return idEstudante;
+    }
+
+    public void adicionarMatricula(Matricula matricula) {
+        this.matriculas.add(matricula);
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudante{" + "id='" + idEstudante + '\'' + ", nome='" + nome + '\'' + '}';
+    }
+}
+
+class Turma {
+    private String codTurma;
+    private String disciplina;
+    // Opcional: Turma pode manter uma lista de suas matrículas
+    private List<Matricula> matriculas;
+
+    public Turma(String codTurma, String disciplina) {
+        this.codTurma = codTurma;
+        this.disciplina = disciplina;
+        this.matriculas = new ArrayList<>();
+    }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public String getCodTurma() {
+        return codTurma;
+    }
+
+    public void adicionarMatricula(Matricula matricula) {
+        this.matriculas.add(matricula);
+    }
+
+    public List<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    @Override
+    public String toString() {
+        return "Turma{" + "cod='" + codTurma + '\'' + ", disciplina='" + disciplina + '\'' + '}';
+    }
+}
+
+// Classe de Associação: Matricula
+class Matricula {
+    private Estudante estudante; // Referência ao Estudante
+    private Turma turma;       // Referência à Turma
+    private Date dataMatricula;
+    private String status;
+    private double notaFinal;
+
+    public Matricula(Estudante estudante, Turma turma, Date dataMatricula) {
+        this.estudante = estudante;
+        this.turma = turma;
+        this.dataMatricula = dataMatricula;
+        this.status = "Cursando"; // Status inicial
+
+        // Adiciona esta matrícula às listas do estudante e da turma para navegação bidirecional
+        estudante.adicionarMatricula(this);
+        turma.adicionarMatricula(this);
+        System.out.println("Matrícula realizada para " + estudante.getNome() + " na turma " + turma.getCodTurma());
+    }
+
+    public Estudante getEstudante() {
+        return estudante;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public Date getDataMatricula() {
+        return dataMatricula;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getNotaFinal() {
+        return notaFinal;
+    }
+
+    public void setNotaFinal(double notaFinal) {
+        this.notaFinal = notaFinal;
+    }
+
+    public String calcularStatusAprovacao() {
+        if (notaFinal >= 7.0) {
+            return "Aprovado";
+        } else if (notaFinal >= 5.0) {
+            return "Recuperação";
+        } else {
+            return "Reprovado";
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Matricula{" +
+               "estudante=" + estudante.getNome() +
+               ", turma=" + turma.getCodTurma() + " (" + turma.getDisciplina() + ")" +
+               ", data=" + dataMatricula +
+               ", nota=" + notaFinal +
+               ", status='" + status + '\'' +
+               '}';
+    }
+}
+
+public class ExemploClasseAssociacao {
+    public static void main(String[] args) {
+        Estudante aluno1 = new Estudante("E001", "Ana Clara");
+        Estudante aluno2 = new Estudante("E002", "Bruno Dias");
+
+        Turma turmaADS = new Turma("T01", "Análise e Des. de Sistemas");
+        Turma turmaLogica = new Turma("T02", "Lógica de Programação");
+
+        // Criando instâncias da classe de associação
+        Matricula mat1 = new Matricula(aluno1, turmaADS, new Date());
+        mat1.setNotaFinal(8.5);
+        mat1.setStatus(mat1.calcularStatusAprovacao());
+
+
+        Matricula mat2 = new Matricula(aluno1, turmaLogica, new Date());
+        mat2.setNotaFinal(6.0);
+        mat2.setStatus(mat2.calcularStatusAprovacao());
+
+        Matricula mat3 = new Matricula(aluno2, turmaADS, new Date());
+        mat3.setNotaFinal(9.0);
+        mat3.setStatus(mat3.calcularStatusAprovacao());
+
+        System.out.println("\nDetalhes das Matrículas:");
+        System.out.println(mat1);
+        System.out.println(mat2);
+        System.out.println(mat3);
+
+        System.out.println("\nMatrículas de " + aluno1.getNome() + ":");
+        for (Matricula m : aluno1.getMatriculas()) {
+            System.out.println("- Turma: " + m.getTurma().getDisciplina() + ", Nota: " + m.getNotaFinal() + ", Status: " + m.getStatus());
+        }
+    }
+}
+```
+
+---
+
+### Boas Práticas 👍 e Más Práticas 👎 para Classes de Associação
+
+#### Boas Práticas 👍:
+
+1.  **Use para Atributos da Relação:** Crie uma classe de associação quando a relação entre duas classes tem atributos próprios que não se encaixam bem em nenhuma das classes individualmente (ex: `dataContratacao` em uma relação `Empregado` -- `Projeto`).
+2.  **Comportamento da Relação:** Utilize também se a relação tiver operações específicas (ex: `calcularComissao()` na relação `Vendedor` -- `Venda`).
+3.  **Clareza em Muitos-para-Muitos:** Elas são especialmente úteis para resolver associações muitos-para-muitos, transformando-as em duas associações um-para-muitos com a classe de associação no meio. Isso é crucial em modelagem de banco de dados relacional.
+4.  **Nome Significativo:** Dê um nome à classe de associação que descreva claramente o que ela representa na relação (ex: `Inscricao`, `ItemDePedido`, `Contrato`).
+5.  **Multiplicidade Clara:** A classe de associação tem, implicitamente, uma multiplicidade de '1' para cada "lado" da associação original que ela detalha. As classes originais mantêm suas multiplicidades na associação principal.
+
+#### Más Práticas 👎:
+
+1.  **Uso Desnecessário:** Evite criar uma classe de associação se os atributos puderem pertencer logicamente a uma das classes da associação, especialmente em relações um-para-um ou um-para-muitos, onde o atributo pode ficar do lado "muitos" ou em qualquer um dos lados em um-para-um. Isso pode complicar o modelo sem necessidade.
+  * *Exemplo Ruim:* Se uma `Pessoa` tem um único `TelefonePrincipal`, e o telefone tem um atributo `dataDeAtivacao` que é específico para aquela pessoa e aquele telefone, essa `dataDeAtivacao` poderia estar na classe `Telefone` ou, se `Telefone` for uma classe com muitos atributos, a relação entre `Pessoa` e `Telefone` poderia ter esse atributo, mas uma classe de associação seria exagero.
+2.  **Confundir com Entidade Intermediária Comum:** Não confunda uma classe de associação com uma entidade que simplesmente se relaciona com outras duas. A classe de associação *descreve a própria relação*. Se a "classe do meio" tem sua própria identidade e existência independente da relação, ela é apenas uma classe normal com duas associações.
+3.  **Esquecer a Conexão Tracejada:** No diagrama UML, a classe de associação *deve* estar ligada à linha da associação com uma linha tracejada. Conectá-la diretamente às classes participantes como uma associação comum muda o significado.
+4.  **Atribuir Responsabilidades Erradas:** Não coloque na classe de associação atributos ou operações que são claramente responsabilidade de uma das classes participantes.
+5.  **Modelagem Excessiva:** Em alguns casos, especialmente se a "classe de associação" não tiver comportamento próprio significativo e poucos atributos, pode-se optar por "promover" os atributos para uma das entidades participantes (se a multiplicidade permitir) ou criar uma entidade de junção simples, principalmente ao mapear para bancos de dados.
+
+Dominar o uso de classes de associação permite criar modelos mais ricos e precisos, capturando nuances importantes sobre como os objetos se relacionam.
+
+---
+
+RESUMO GEMINI - Com o PDF da aula
+
+Ok! Com base na sua apostila, vou aprimorar a explicação sobre **Classes de Associação**, focando nos pontos levantados pelo material do professor.
+
+Primeiro, a transcrição do conteúdo relevante da apostila:
+
+### Transcrição da Apostila (Partes Relevantes)
+
+**Página 1: Agenda** [cite: 1]
+* Exemplo motivador
+* Classe de associação em associações muitos-para-muitos
+* Classe de associação vs. Classe comum [cite: 1]
+
+**Página 2: Exemplo motivador** [cite: 2]
+* "Deseja-se fazer um sistema para manter um cadastro de filmes e artistas (atores/atrizes), bem como a informação de qual artista atuou em cada filme." [cite: 2]
+* (Imagem mostrando filmes e artistas, e um diagrama de classes inicial com `Filme` e `Artista` em uma relação muitos-para-muitos).
+
+**Página 3: Problema** [cite: 4]
+* "Além disso, desejo saber também o nome do personagem desempenhado por cada artista em cada filme." [cite: 4]
+* (Imagens mostrando que adicionar o nome do personagem diretamente na lista de filmes ou artistas é "ERRADO").
+
+**Página 4: Classe de associação**
+* "Conclusão: o nome do personagem é um dado que pertence à associação." [cite: 6]
+* "Neste caso, o nome do personagem deverá ser armazenado em um objeto intermediário." [cite: 7]
+* (Diagrama UML mostrando `Filme` e `Artista` com uma classe de associação `Participacao` ligada à associação, contendo o atributo `personagem: String`).
+* "Atenção! A classe de associação indica associação ÚNICA!" [cite: 9]
+* "Este modelo indica que para um mesmo artista e um mesmo filme, só pode haver uma participação." [cite: 9]
+* "Isso não pode: (diagrama ilustrando a impossibilidade de um mesmo artista ter múltiplas participações/personagens diferentes no mesmo filme COM ESTE MODELO ESPECÍFICO de classe de associação)."
+
+**Página 5: Problema de Múltiplos Personagens**
+* "Então como representar um modelo no qual um mesmo artista pode representar mais de um personagem em um mesmo filme?" [cite: 10] (Exemplo: "Double Impact" [cite: 11]).
+* (Diagrama UML mostrando `Filme "1" -- "*" participacoes - Participacao - participacoes "*" -- "1" Artista`. A classe `Participacao` agora é uma classe comum no meio, com `<<oid>> id: integer` e `personagem: String`).
+
+**Página 6: Resumo da aula** [cite: 12]
+* "Associação muitos-para-muitos: ALERTA! Tem atributo na associação? SIM: então haverá um novo conceito no meio!" [cite: 13]
+* "O mesmo 'A' pode estar associado com o mesmo 'B' mais de uma vez?" [cite: 14]
+  * "não" -> (Diagrama com Classe de Associação padrão: A -- (C) -- B)
+  * "sim" -> (Diagrama com Classe Intermediária: A --* C *-- B)
+* "O mesmo artista pode participar do mesmo filmes mais de uma vez?" [cite: 14]
+
+---
+
+### Resumo e Análise do Tema (com base na apostila)
+
+A apostila do professor introduz a **Classe de Associação** como uma solução para modelar atributos que pertencem à relação entre duas classes, especialmente em associações muitos-para-muitos. [cite: 2, 6] O exemplo central é a necessidade de registrar qual personagem (`personagem`) um `Artista` desempenhou em um `Filme`. [cite: 4, 7]
+
+Um ponto crucial destacado é que uma **Classe de Associação padrão implica uma associação ÚNICA** entre as instâncias das classes conectadas. [cite: 9] Isso significa que, para um par específico de (`Filme`, `Artista`), só pode existir uma instância da classe de associação (no exemplo, uma `Participacao`). [cite: 9] Esse modelo é adequado quando um artista desempenha apenas um personagem em um determinado filme.
+
+No entanto, a apostila avança para um cenário mais complexo: "E se um mesmo artista puder representar mais de um personagem no mesmo filme?" (como no filme "Double Impact"). [cite: 10, 11] Para esses casos, a classe de associação padrão não é suficiente devido à sua restrição de unicidade. A solução é transformar o "conceito no meio" (a antiga classe de associação) em uma **classe comum (ou entidade intermediária)**. [cite: 13] Esta classe intermediária terá sua própria identidade e se relacionará com as classes originais (`Filme` e `Artista`) através de duas associações um-para-muitos. [cite: 15] Isso permite que um mesmo artista tenha múltiplas participações (com personagens diferentes) no mesmo filme, pois cada participação será uma instância distinta da classe intermediária.
+
+Portanto, a decisão entre usar uma classe de associação padrão ou uma classe intermediária depende da cardinalidade da relação e se um par de objetos (`A` e `B`) pode ter múltiplos "links" com atributos diferentes entre eles. [cite: 14]
+
+### Exemplos UML (Mermaid) e Código Java
+
+Vamos ilustrar os dois cenários apresentados na apostila:
+
+#### Cenário 1: Associação ÚNICA (Classe de Associação Padrão)
+Um artista desempenha no máximo um personagem por filme.
+
+**Exemplo UML:**
+
+```mermaid
+classDiagram
+    Filme "0..*" -- "0..*" Artista : atua em
+    (Filme) .. (Participacao)
+    (Artista) .. (Participacao)
+
+    class Filme {
+        +Integer idFilme
+        +String titulo
+        +Integer ano
+    }
+    class Artista {
+        +Integer idArtista
+        +String nome
+    }
+    class Participacao {
+        +String personagem
+        +getFilme() Filme
+        +getArtista() Artista
+    }
+```
+
+**Exemplo em Código Java:**
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
+class Filme {
+    public Integer idFilme;
+    public String titulo;
+    public Integer ano;
+
+    public Filme(Integer idFilme, String titulo, Integer ano) {
+        this.idFilme = idFilme;
+        this.titulo = titulo;
+        this.ano = ano;
+    }
+
+    @Override
+    public String toString() {
+        return "Filme{" + "id=" + idFilme + ", titulo='" + titulo + '\'' + ", ano=" + ano + '}';
+    }
+
+    // hashCode e equals para uso em chaves de Map
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Filme filme = (Filme) o;
+        return Objects.equals(idFilme, filme.idFilme);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idFilme);
+    }
+}
+
+class Artista {
+    public Integer idArtista;
+    public String nome;
+
+    public Artista(Integer idArtista, String nome) {
+        this.idArtista = idArtista;
+        this.nome = nome;
+    }
+
+     @Override
+    public String toString() {
+        return "Artista{" + "id=" + idArtista + ", nome='" + nome + '\'' + '}';
+    }
+
+    // hashCode e equals
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Artista artista = (Artista) o;
+        return Objects.equals(idArtista, artista.idArtista);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idArtista);
+    }
+}
+
+// Classe de Associação Padrão
+class Participacao {
+    private Filme filme;
+    private Artista artista;
+    public String personagem;
+
+    public Participacao(Filme filme, Artista artista, String personagem) {
+        this.filme = filme;
+        this.artista = artista;
+        this.personagem = personagem;
+    }
+
+    public Filme getFilme() { return filme; }
+    public Artista getArtista() { return artista; }
+
+    @Override
+    public String toString() {
+        return "Participacao{" + artista.nome + " como '" + personagem + "' em '" + filme.titulo + "'}";
+    }
+}
+
+// Gerenciador para garantir a unicidade da participação (Filme, Artista)
+class SistemaFilmesUnico {
+    // Chave composta para garantir unicidade
+    static class ParFilmeArtista {
+        Filme filme;
+        Artista artista;
+
+        ParFilmeArtista(Filme filme, Artista artista) {
+            this.filme = filme;
+            this.artista = artista;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ParFilmeArtista that = (ParFilmeArtista) o;
+            return Objects.equals(filme, that.filme) && Objects.equals(artista, that.artista);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(filme, artista);
+        }
+    }
+
+    private Map<ParFilmeArtista, Participacao> participacoes = new HashMap<>();
+
+    public void adicionarParticipacao(Filme filme, Artista artista, String personagem) {
+        ParFilmeArtista par = new ParFilmeArtista(filme, artista);
+        if (participacoes.containsKey(par)) {
+            System.out.println("ERRO: " + artista.nome + " já tem uma participação em " + filme.titulo);
+            return;
+        }
+        Participacao p = new Participacao(filme, artista, personagem);
+        participacoes.put(par, p);
+        System.out.println("Adicionado: " + p);
+    }
+
+    public Participacao getParticipacao(Filme filme, Artista artista) {
+        return participacoes.get(new ParFilmeArtista(filme, artista));
+    }
+}
+
+public class ExemploClasseAssociacaoUnica {
+    public static void main(String[] args) {
+        Filme f1 = new Filme(8010, "The Expendables 2", 2012);
+        Filme f2 = new Filme(8011, "Titanic", 1997);
+        Artista a1 = new Artista(1001, "Jean-Claude Van Damme");
+        Artista a2 = new Artista(1002, "Leonardo DiCaprio");
+
+        SistemaFilmesUnico sistema = new SistemaFilmesUnico();
+        sistema.adicionarParticipacao(f1, a1, "Vilain");
+        sistema.adicionarParticipacao(f2, a2, "Jack Dawson");
+        
+        // Tentativa de adicionar a mesma participação (deve falhar ou ser ignorada pela lógica da unicidade)
+        System.out.println("\nTentando adicionar participação duplicada:");
+        sistema.adicionarParticipacao(f1, a1, "Outro Personagem"); // Não deveria permitir segundo a regra de unicidade
+
+        System.out.println("\nParticipação de Van Damme em Expendables 2: " + sistema.getParticipacao(f1, a1).personagem);
+    }
+}
+```
+
+#### Cenário 2: Múltiplas Associações/Papéis (Classe Intermediária)
+Um artista pode desempenhar vários personagens no mesmo filme. [cite: 10]
+
+**Exemplo UML:**
+
+```mermaid
+classDiagram
+    Filme "1" -- "0..*" ParticipacaoDetalhada : possui
+    Artista "1" -- "0..*" ParticipacaoDetalhada : realizada_por
+
+    class Filme {
+        +Integer idFilme
+        +String titulo
+        +Integer ano
+    }
+    class Artista {
+        +Integer idArtista
+        +String nome
+    }
+    class ParticipacaoDetalhada {
+        +Integer idParticipacao  // Identificador próprio
+        +String personagem
+        +getFilme() Filme
+        +getArtista() Artista
+    }
+```
+
+**Exemplo em Código Java:**
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+// Classes Filme e Artista podem ser as mesmas do exemplo anterior
+
+class ParticipacaoDetalhada {
+    private static int proximoId = 1;
+    public Integer idParticipacao;
+    public Filme filme; // Referência ao filme
+    public Artista artista; // Referência ao artista
+    public String personagem;
+
+    public ParticipacaoDetalhada(Filme filme, Artista artista, String personagem) {
+        this.idParticipacao = proximoId++;
+        this.filme = filme;
+        this.artista = artista;
+        this.personagem = personagem;
+    }
+
+    @Override
+    public String toString() {
+        return "ParticipacaoDetalhada{" + "id=" + idParticipacao + ", filme=" + filme.titulo + 
+               ", artista=" + artista.nome + ", personagem='" + personagem + '\'' + '}';
+    }
+}
+
+class SistemaFilmesMultipla {
+    private List<ParticipacaoDetalhada> todasParticipacoes = new ArrayList<>();
+
+    public void adicionarParticipacao(Filme filme, Artista artista, String personagem) {
+        ParticipacaoDetalhada p = new ParticipacaoDetalhada(filme, artista, personagem);
+        todasParticipacoes.add(p);
+        System.out.println("Adicionado: " + p);
+    }
+
+    public void listarParticipacoesPorFilme(Filme filme) {
+        System.out.println("\nParticipações em " + filme.titulo + ":");
+        for (ParticipacaoDetalhada p : todasParticipacoes) {
+            if (p.filme.equals(filme)) {
+                System.out.println("- " + p.artista.nome + " como " + p.personagem);
+            }
+        }
+    }
+}
+
+public class ExemploClasseIntermediaria {
+    public static void main(String[] args) {
+        Filme filmeDI = new Filme(8010, "Double Impact", 1991); // Exemplo da apostila [cite: 11]
+        Artista artistaJCVD = new Artista(1001, "Jean-Claude Van Damme");
+
+        SistemaFilmesMultipla sistema = new SistemaFilmesMultipla();
+
+        // JCVD interpreta dois personagens no mesmo filme
+        sistema.adicionarParticipacao(filmeDI, artistaJCVD, "Alex Wagner");
+        sistema.adicionarParticipacao(filmeDI, artistaJCVD, "Chad Wagner");
+
+        sistema.listarParticipacoesPorFilme(filmeDI);
+    }
+}
+```
+
+---
+
+### Boas e Más Práticas (reforçadas pela apostila)
+
+#### Boas Práticas 👍:
+
+1.  **Atributos da Relação:** Use uma classe (de associação ou intermediária) quando a *relação* entre duas entidades tem atributos próprios. [cite: 6, 13] (Ex: `personagem` na relação `Filme`-`Artista`).
+2.  **Resolver Muitos-para-Muitos:** É a forma padrão de lidar com atributos em associações N-M. [cite: 13]
+3.  **Clareza na Unicidade vs. Multiplicidade da Relação:**
+  * Se um par (A, B) tem **apenas uma** instância da relação com atributos, uma **Classe de Associação padrão** é adequada. [cite: 9]
+  * Se um par (A, B) pode ter **múltiplas** instâncias da relação, cada uma com seus atributos (ex: mesmo artista, mesmo filme, múltiplos personagens), use uma **Classe Intermediária** com identidade própria e duas relações 1-N. [cite: 10, 14, 15]
+4.  **Nome Significativo:** Dê nomes que reflitam o papel da classe na relação (ex: `Participacao`, `Matricula`, `ItemContrato`).
+
+#### Más Práticas 👎:
+
+1.  **Uso Desnecessário:** Se os atributos podem pertencer claramente a uma das classes da associação (comum em relações 1-1 ou 1-N), evite a classe de associação para não complicar o modelo.
+2.  **Confundir o Modelo de Unicidade:** Aplicar o modelo de classe de associação padrão (que implica unicidade do link) quando a regra de negócio permite múltiplos links caracterizados entre o mesmo par de instâncias. [cite: 9, 10] Isso levaria a um modelo incorreto.
+3.  **Esquecer a Identidade da Classe Intermediária:** Ao optar pelo modelo de classe intermediária para permitir múltiplas participações, é fundamental que essa classe tenha sua própria identidade (um `idParticipacao`, por exemplo), distinguindo cada instância de participação.
+4.  **Modelar como Classe Comum sem Necessidade:** Se a relação é estritamente única para o par (A,B) e a classe de associação não tem outras associações complexas, a notação de classe de associação padrão (com linha tracejada) pode ser mais expressiva da semântica do que criar uma classe intermediária comum.
+
+--- 
 
 ### 26 Exercícios de fixação
 
