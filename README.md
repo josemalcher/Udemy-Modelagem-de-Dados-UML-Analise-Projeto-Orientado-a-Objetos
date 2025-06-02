@@ -1562,6 +1562,29 @@ System.out.println(d2.getTime() + ": " + sdf.format(d2));
 
 ### 34 Herança - Parte 1
 
+![img.png](img/34_1_heranca1.png)
+
+![img.png](img/34_2_naoEheranca.png)
+
+![img.png](img/34_3_definicoesImportantes.png)
+
+![img.png](img/34_4_ressalva1.png)
+
+![img.png](img/34_5_ressalva2.png)
+
+![img.png](img/34_6_ressalva3.png)
+
+Resumo da aula
+- Questionamentos básicos ao considerar herança:
+  1. Há estrutura comum entre os dois conceitos?
+  2. Há relação É-UM entre os conceitos e um conceito mais genérico que pode representar a estrutura comum?
+
+- Definições:
+  - Relação É-UM
+  - Relação generalização / especialização • Superclasse / subclasse
+  - Herança / Extensão
+  - A herança é uma associação de classes
+
 
 
 ### 35 Herança - Parte 2
