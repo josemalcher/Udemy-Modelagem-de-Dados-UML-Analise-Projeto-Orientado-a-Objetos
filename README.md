@@ -1478,6 +1478,8 @@ Instância mínima: 1 curso, 1 turma, 2 matrículas e 2 avaliações com resulta
 
 [Exer02](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer02)
 
+
+
 ### 31 Correção do exercício 3
 
 Exercício 3: Uma biblioteca deseja fazer o registro de seus empréstimos de livros. Quando um usuário pega um livro emprestado, deve ser registrada a data de empréstimo. Por padrão, o prazo de empréstimo é de dois dias, considerando atraso se o livro for devolvido depois deste tempo. Cada livro possui um título, gênero, editora e número de páginas. Um livro pode participar de uma coleção. Cada livro também possui um valor diário de multa, caso o usuário devolva o livro com atraso em relação à data prevista de devolução.
@@ -1485,6 +1487,8 @@ Exercício 3: Uma biblioteca deseja fazer o registro de seus empréstimos de liv
 Instância mínima: 3 livros, 1 usuário, 2 empréstimos. Pelo menos um livro participando de uma coleção.
 
 [Exer03](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer03)
+
+
 
 
 [Voltar ao Índice](#indice)
