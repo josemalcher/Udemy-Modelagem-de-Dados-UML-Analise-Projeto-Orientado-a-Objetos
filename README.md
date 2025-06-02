@@ -1589,11 +1589,23 @@ Resumo da aula
 
 ### 35 Herança - Parte 2
 
+#### Uso impróprio de herança
+
+**Indicativos de que o uso da herança é impróprio:**
+- Para o conceito da subclasse fazer sentido, ele estaria associado a outro conceito?
+- Uma mesma pessoa pode ser cliente e também funcionário?
+
+![img.png](img/35_1_improprioHeranca.png)
+
+- "Funcionário" e "Cliente" não são especializações, mas sim papéis que uma pessoa pode assumir
+- Esses papéis podem ser representados por classes de associação
+
+![img.png](img/35_2_improiprioHeranca.png)
 
 
 ### 36 Exercícios de fixação
 
-
+[05-E01+exercicios-fixacao-heranca-enumeracoes-tipos-primitivos.pdf](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/00-apoio/05-E01%2Bexercicios-fixacao-heranca-enumeracoes-tipos-primitivos.pdf)
 
 ### 37 Exercício resolvido 1 - Parte 1/3
 
