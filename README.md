@@ -1488,7 +1488,7 @@ Instância mínima: 3 livros, 1 usuário, 2 empréstimos. Pelo menos um livro pa
 
 [Exer03](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer03)
 
-
+[Exer03Codigo](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer03Codigo)
 
 
 [Voltar ao Índice](#indice)
