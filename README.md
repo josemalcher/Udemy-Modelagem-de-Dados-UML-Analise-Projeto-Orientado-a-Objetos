@@ -1478,7 +1478,7 @@ Instância mínima: 1 curso, 1 turma, 2 matrículas e 2 avaliações com resulta
 
 [Exer02](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer02)
 
-
+[Exer02Codigo](Secao-04-Associacaes-todo-parte-e-classes-de-associacao/Exer02Codigo)
 
 ### 31 Correção do exercício 3
 
