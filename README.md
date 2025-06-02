@@ -1498,6 +1498,103 @@ Instância mínima: 3 livros, 1 usuário, 2 empréstimos. Pelo menos um livro pa
 
 ## <a name="parte5">5 - Seção 5 - Herança, Enumerações e Tipos Primitivos</a>
 
+### 32 Material de apoio do capítulo
+
+- [05-A01+Enumerações+e+tipos+primitivos.pdf](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/00-apoio/05-A01%2BEnumera%C3%A7%C3%B5es%2Be%2Btipos%2Bprimitivos.pdf)
+- [05-A02+Herança+PARTE+1.pdf](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/00-apoio/05-A02%2BHeran%C3%A7a%2BPARTE%2B1.pdf)
+- [05-A03+Herança+PARTE+2.pdf](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/00-apoio/05-A03%2BHeran%C3%A7a%2BPARTE%2B2.pdf)
+
+
+### 33 Enumerações e tipos primitivos
+
+Uma enumeração pode ser considerada um
+"meio termo" entre um conceito e um
+atributo.
+
+Uma enumeração representa um conceito que
+possui um número finito de valores possíveis,
+valores estes que, para o negócio, valem a
+pena ser descritos.
+
+![img.png](img/33_1-enum.png)
+
+
+Para simplificar o diagrama principal do sistema, recomenda-se incluir as enumerações em um diagrama separado, representando seu nome no diagrama do sistema diretamente como um tipo de atributo.
+
+#### Diagrama de enumerações
+
+![img.png](img/22_2_enum.png)
+
+![img.png](img/33_3_enum_sistema.png)
+
+#### Tipos primitivos
+
+Também podem ser considerados um "meio termo" entre um conceito e um atributo.
+
+É um conceito que, devido a sua simplicidade, "não merece" ser modelado como um conceito comum no diagrama do modelo conceitual.
+
+Sua regra de formação é meramente sintática e não depende de nenhum dado do sistema.
+
+Tipicamente não possui identificador.
+
+Outros exemplos: ISBN, CEP, Posicao3D, etc.
+
+![img.png](img/33_4-tiposPrimitivos.png)
+
+![img.png](img/33_5-tipoPrimitivo_2.png)
+
+#### Ressalva
+
+Em linguagens modernas, a data (ou data-hora) não é armazenada internamente por meio de um número inteiro para cada campo (dia, mês, ano, hora, segundo, milissegundo).
+
+Exemplo:
+Em linguagem Java, o tipo Date, do pacote java.util, armazena uma data-hora na forma de um único número inteiro longo (long), representando a quantidade de milissegundos que se passaram desde 0:00:00 GMT 01/01/1970
+
+```java
+java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm:ss z"); java.util.Date d1 = new java.util.Date();
+java.util.Date d2 = new java.util.Date(0L);
+System.out.println(d1.getTime() + ": " + sdf.format(d1));
+System.out.println(d2.getTime() + ": " + sdf.format(d2));
+
+```
+
+![img.png](img/33_6-ReusmoEnumTipoPrimitivo.png)
+
+### 34 Herança - Parte 1
+
+
+
+### 35 Herança - Parte 2
+
+
+
+### 36 Exercícios de fixação
+
+
+
+### 37 Exercício resolvido 1 - Parte 1/3
+
+
+
+### 38 Exercício resolvido 1 - Parte 2/3
+
+
+
+### 39 Exercício resolvido 1 - Parte 3/3
+
+
+
+### 40 Correção do exercício 2 - Parte 1/2
+
+
+
+### 41 Correção do exercício 2 - Parte 2/2
+
+
+
+### 42 Correção do exercício 3
+
+
 
 
 [Voltar ao Índice](#indice)
