@@ -1609,7 +1609,9 @@ Resumo da aula
 
 ### 37 Exercício resolvido 1 - Parte 1/3
 
+Exercício 1 (RESOLVIDO): Uma locadora de carros deseja fazer um sistema para armazenar as informações das locações que os clientes fazem. A locadora possui diversas sedes, sendo que cada sede possui um código e uma localidade, sendo que uma localidade é armazenada internamente por dois números de ponto flutuante (exemplo: a localidade 18°56'04.4"S 48°17'29.7"W é armazenada como -18.9345654, -48.2915811). Para cada locação é necessário registrar a data e horário em que o cliente pega o carro, bem como a sede da qual o carro foi retirado. Há dois tipos de locação: a diária e a de longo período. Quando a locação for diária, deve-se armazenar o número de dias previstos para devolução do carro. Quando a locação for de longo período, deve-se armazenar a porcentagem de desconto dada no valor da diária. Em todos os casos, a data e horário em que o carro foi devolvido devem ser armazenados. Os dados de cada carro são modelo, placa, cor, ano e data de aquisição. A locadora trabalha somente com carros de cor branca, preta, cinza e vermelha. Os dados dos clientes são nome, cpf, email e seus telefones. Cada carro pertence a uma categoria, sendo que cada categoria de carro possui um valor de diária de locação.
 
+Instância mínima: 1 cliente, 2 carros, 3 locações.
 
 ### 38 Exercício resolvido 1 - Parte 2/3
 
@@ -1621,6 +1623,10 @@ Resumo da aula
 
 ### 40 Correção do exercício 2 - Parte 1/2
 
+Exercício 2: Deseja-se fazer um sistema de pedidos. Um ou mais produtos podem ser vendidos em cada pedido, sendo que a cada produto pode ser dado um desconto diferente, e também cada produto pode ser vendido em uma ou mais unidades. Cada produto possui nome e preço, e pode pertencer a várias categorias. Cada pedido é feito por um cliente, que deve ter em seu cadastro nome, telefones, email, cpf ou cnpj, e um ou mais endereços, sendo que o cliente deve especificar um endereço para entrega na hora de comprar. Para um pedido, deve ser registrado o instante em que é realizado e o endereço de entrega. Um pedido deve ser pago ou por boleto, ou por cartão de crédito. No caso de boleto, deve-se armazenar a data de vencimento e a data de pagamento. No caso de cartão de crédito, deve-se armazenar o número de parcelas. Todo pagamento possui um estado (pendente, quitado ou cancelado).
+
+
+Instância mínima: 1 cliente, 3 produtos, 2 pedidos, pelo menos um pedido com mais de um produto, pelo menos um pedido pago com cartão de crédito e um com boleto.
 
 
 ### 41 Correção do exercício 2 - Parte 2/2
@@ -1629,8 +1635,9 @@ Resumo da aula
 
 ### 42 Correção do exercício 3
 
+Exercício 3: Deseja-se fazer um sistema para gerenciar informações de uma companhia aérea. Para isto, deve-se manter um cadastro das pessoas no sistema, sendo que é possível ter passageiros e pilotos. Toda pessoa possui cpf, nome e sexo, enquanto que pilotos possuem um número de licença de voo, e os passageiros possuem data de nascimento e um ou mais telefones. Quando um passageiro faz uma reserva de voo, deve ser registrado o assento deste passageiro no voo. O sistema também deve manter a informação de quem foi o piloto de cada voo, além do número, data e horário do voo.
 
-
+Instância mínima: 2 pilotos, 3 passageiros, 2 voos. Pelo menos um passageiro com mais de um telefone. Pelo menos um voo com mais de um passageiro. Um dos pilotos deve ser passageiro de um voo (obviamente não pilotado por ele).
 
 [Voltar ao Índice](#indice)
 
