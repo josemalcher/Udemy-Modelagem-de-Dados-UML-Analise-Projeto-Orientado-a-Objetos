@@ -1619,6 +1619,8 @@ Instância mínima: 1 cliente, 2 carros, 3 locações.
 
 ### 39 Exercício resolvido 1 - Parte 3/3
 
+[37-Exercicio-resolvido-1](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/37-Exercicio-resolvido-1)
+
 
 
 ### 40 Correção do exercício 2 - Parte 1/2
