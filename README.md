@@ -1640,10 +1640,13 @@ Exercício 3: Deseja-se fazer um sistema para gerenciar informações de uma com
 
 Instância mínima: 2 pilotos, 3 passageiros, 2 voos. Pelo menos um passageiro com mais de um telefone. Pelo menos um voo com mais de um passageiro. Um dos pilotos deve ser passageiro de um voo (obviamente não pilotado por ele).
 
+[42-Correcao-do-exercicio-3](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/42-Correcao-do-exercicio-3)
+
+[42-Correcao-do-exercicio-3-Codigo](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/42-Correcao-do-exercicio-3-Codigo)
+
 [Voltar ao Índice](#indice)
 
 ---
-
 
 ## <a name="parte6">6 - Seção 6 - Estudo de caso: Implementação Java com Spring Boot e JPA</a>
 
