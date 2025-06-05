@@ -1650,6 +1650,97 @@ Instância mínima: 2 pilotos, 3 passageiros, 2 voos. Pelo menos um passageiro c
 
 ## <a name="parte6">6 - Seção 6 - Estudo de caso: Implementação Java com Spring Boot e JPA</a>
 
+### 43 Visão geral do estudo de caso
+
+
+
+### 44 Material de apoio do capítulo
+
+[06-A01+estudo-de-caso-java-spring-boot.pdf](Secao-06-Estudo-de-caso-ImplementacaoJavacomSpringBooteJPA/00-apoio/06-A01%2Bestudo-de-caso-java-spring-boot.pdf)
+
+### 45 Instalação das ferramentas
+
+
+
+### 46 Criação do projeto Spring Boot
+
+
+
+### 47 Primeiro commit - Projeto criado
+
+
+
+### 48 REST testado
+
+
+
+### 49 Testando a primeira classe de domínio - Categoria
+
+
+
+### 50 Banco de dados H2 e criação automática da base de dados
+
+
+
+### 51 Criando repository e service para Categoria
+
+
+
+### 52 Criando operação de instanciação
+
+
+
+### 53 Produto e associação muitos para muitos
+
+
+
+### 54 Ajustes no endpoint /categorias/{id}
+
+
+
+### 55 Estado e cliente
+
+
+
+### 56 Cliente, TipoCliente, telefones e endereços - Parte 1
+
+
+
+### 57 Cliente, TipoCliente, telefones e endereços - Parte 2
+
+
+
+### 58 Endpoint /clientes/{id} disponível
+
+
+
+### 59 Pedido, EstadoPagamento e Pagamento - Parte 1
+
+
+
+### 60 Pedido, EstadoPagamento e Pagamento - Parte 2
+
+
+
+### 61 Pedido, EstadoPagamento e Pagamento - Parte 3
+
+
+
+### 62 ItemPedido e ItemPedidoPK - Parte 1
+
+
+
+### 63 ItemPedido e ItemPedidoPK - Parte 2
+
+
+
+### 64 Enpoint /pedidos/{id} disponibilizado
+
+
+
+### 65 Atualizacao: utilizando somente JsonIgnore
+
+
 
 
 [Voltar ao Índice](#indice)
