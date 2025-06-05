@@ -1632,7 +1632,7 @@ Instância mínima: 1 cliente, 3 produtos, 2 pedidos, pelo menos um pedido com m
 
 ### 41 Correção do exercício 2 - Parte 2/2
 
-
+[40-Correcao-do-exercicio2-Codigo](Secao-05-Heranca-Enumeracoes-e-Tipos-Primitivos/40-Correcao-do-exercicio2-Codigo)
 
 ### 42 Correção do exercício 3
 
